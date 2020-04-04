@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3852B61-0E4C-430C-AA06-731C136F432E}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{a52b8a63-bc84-4b47-910d-692533484892}</TemplateGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Plugin.Xamarin.Controls.IOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Plugin.Xamarin.Controls.IOS</AssemblyName>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\CameraIOSView.cs" />
+    <Compile Include="Classes\DrawButtons.cs" />
+    <Compile Include="Classes\UIPaintCodeButton.cs" />
+    <Compile Include="Controls\PXC_ButtonRenderer.cs" />
+    <Compile Include="Controls\PXC_CameraRenderer.cs" />
+    <Compile Include="Controls\PXC_DatePickerRenderer.cs" />
+    <Compile Include="Controls\PXC_EditorRenderer.cs" />
+    <Compile Include="Controls\PXC_EntryRenderer.cs" />
+    <Compile Include="Controls\PXC_GridViewRenderer.cs" />
+    <Compile Include="Controls\PXC_ImageRenderer.cs" />
+    <Compile Include="Controls\PXC_Label_UnderLineRenderer.cs" />
+    <Compile Include="Controls\PXC_PickerRenderer.cs" />
+    <Compile Include="Controls\PXC_RadioButtonRenderer.cs" />
+    <Compile Include="Controls\PXC_SearchBarRenderer.cs" />
+    <Compile Include="Controls\PXC_StackLayoutRenderer.cs" />
+    <Compile Include="Controls\PXC_VideoPlayerRenderer.cs" />
+    <Compile Include="Controls\PXC_WebViewRenderer.cs" />
+    <Compile Include="Classes\RadioButtonView.cs" />
+    <Compile Include="Classes\VideoSurface.cs" />
+    <Compile Include="PlatFormExtensions\ColorExtensions.cs" />
+    <Compile Include="PlatFormExtensions\StringExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Tasks">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.5.0.495</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.Xamarin.Controls\Plugin.Xamarin.Controls.csproj">
+      <Project>{7f177ea2-472b-40da-863c-b228c6409f0f}</Project>
+      <Name>Plugin.Xamarin.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\RadioButton\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\RadioButton\checked%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\RadioButton\unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\RadioButton\unchecked%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\playcircleoutline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\playcircleoutline %402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\pausecircleoutline%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\pausecircleoutline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\flashoff%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\flashoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\autoflash%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\autoflash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\flashOn%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\flashOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\switchcamera.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

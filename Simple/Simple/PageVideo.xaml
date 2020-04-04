@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#000"
+              xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
+             x:Class="Simple.PageVideo">
+   
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <controls:PXC_StackLayout HorizontalOptions="FillAndExpand"
+                                      Clicked="PXC_StackLayout_Clicked"
+                                      VerticalOptions="CenterAndExpand">
+                <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                    <controls:PXC_VideoPlayer x:Name="VideoPlayer"
+                                              AutoPlay="True"
+                                              HorizontalOptions="FillAndExpand"
+                                              VerticalOptions="CenterAndExpand"
+                                              FileSource="{Binding VideoSource}"
+                                              VideoVolumeChanged="VideoPlayer_VideoVolumeChanged"
+                                              VideoFinishedChanged="VideoPlayer_VideoFinishedChanged"
+                                              VideoProgressChanged="VideoPlayer_VideoProgressChanged"
+                                              VideoStatusChanged="VideoPlayer_VideoStatusChanged"/>
+                    <Grid AbsoluteLayout.LayoutBounds=".5,0"
+                          AbsoluteLayout.LayoutFlags="PositionProportional"
+                          Padding="10"
+                          x:Name="gridToDisplay">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                                            
+                    <ImageButton x:Name="ImgPlay"
+                                 BackgroundColor="Transparent"
+                                 CornerRadius="100"
+                                 Padding="0"
+                                 HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="CenterAndExpand"
+                                 HeightRequest="65"
+                                 WidthRequest="65"
+                                 Grid.ColumnSpan="2"
+                                 Grid.Row="1"
+                                 Command="{Binding Source={x:Reference VideoPlayer},Path=PlayPauseCommand}"/>
+                    <ImageButton Padding="5"
+                                 BackgroundColor="Black"
+                                 x:Name="ImgVolume"
+                                 CornerRadius="100"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 Grid.Column="1"
+                                 Grid.Row="0"
+                                 Command="{Binding Source={x:Reference VideoPlayer},Path=MuteCommand}"/>
+                    <Frame HorizontalOptions="FillAndExpand"
+                           x:Name="frameprogress"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="2"
+                           VerticalOptions="Center"
+                           BackgroundColor="#000"
+                           CornerRadius="24"
+                           Opacity=".5"
+                           Padding="15,10">
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Grid.Column="0"
+                                   x:Name="position"
+                                   Text="{Binding Position}"
+                                   TextColor="#fff"/>
+                            <controls:PXC_Slider Position="{Binding Source={x:Reference VideoPlayer},Path=Position}"
+                                                 Duration="{Binding Source={x:Reference VideoPlayer},Path=Duration}"
+                                                 Minimum="0"
+                                                 Grid.Column="1"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="Center"
+                                                 MinimumTrackColor="DeepSkyBlue"
+                                                 MaximumTrackColor="White"
+                                                 ThumbColor="DeepSkyBlue"/>
+                            <Label HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Grid.Column="2"
+                                   Text="{Binding Duration}"
+                                   x:Name="duration"
+                                   TextColor="#fff"/>
+                            <!--<ImageButton Source="ic_crop_free.png"
+                                         Padding="5"
+                                         Grid.Column="3"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         x:Name="Imgfull"
+                                         BackgroundColor="Transparent"
+                                         Command="{Binding Source={x:Reference VideoPlayer},Path=FullScreenCommand}"/>-->
+                        </Grid>
+                    </Frame>
+                    </Grid>
+                </AbsoluteLayout>
+            </controls:PXC_StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

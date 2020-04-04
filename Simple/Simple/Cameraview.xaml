@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+              xmlns:ml="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
+             x:Class="Simple.Cameraview">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <ml:PXC_Camera HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Camera="Rear"
+                            OnRecordOrPhotoResult="PXC_Camera_OnRecordOrPhotoResult"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

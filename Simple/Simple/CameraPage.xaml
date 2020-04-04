@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
+             x:Class="Simple.CameraPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="CenterAndExpand">
+            <Button HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    Clicked="Button_Clicked"
+                    BorderColor="Red"
+                    BorderWidth="3"
+                    BackgroundColor="White"
+                    CornerRadius="24"
+                    Text="Open Camera"
+                    TextColor="Red"/>
+            <Image HeightRequest="200"
+                   Margin="10"
+                   IsVisible="{Binding IsImage}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"   
+               Source="{Binding Imagevideo}"
+                   x:Name="imgtest"/>
+            
+                    <controls:PXC_VideoPlayer x:Name="VideoPlayer"
+                                              AutoPlay="True"
+                                              HeightRequest="250"
+                                              IsVisible="{Binding IsVideo}"
+                                              HorizontalOptions="FillAndExpand"
+                                              VerticalOptions="CenterAndExpand"
+                                              ShowControls="True"
+                                              FileSource="{Binding FileSource}"/>
+                    
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

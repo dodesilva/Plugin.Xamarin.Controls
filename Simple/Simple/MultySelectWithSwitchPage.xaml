@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
+             xmlns:lv="clr-namespace:Plugin.Xamarin.Controls.ViewCells;assembly=Plugin.Xamarin.Controls"
+             xmlns:local="clr-namespace:Plugin.Xamarin.Controls.Behaviors;assembly=Plugin.Xamarin.Controls"
+             xmlns:ml="clr-namespace:Plugin.Xamarin.Controls.MultySelectable;assembly=Plugin.Xamarin.Controls"
+             x:Class="Simple.MultySelectWithSwitchPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="listParti"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+
+            <controls:PXC_SearchBar x:Name="searchbar"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="5"
+                                    Text="{Binding Filter,Mode=TwoWay}"
+                                    PxcSearchCommand="{Binding SearchCommand}"
+                                    BorderColor="#ccc"
+                                    BorderRadius="15"
+                                    BorderWidth="1"
+                                    HeightRequest="35"
+                                    FillBackGroungColor="#fff"
+                                    HasBorder="True"/>
+
+            <ListView ItemsSource="{Binding GetUserList}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True" 
+                      ml:MultiSelect.Enable="True"
+                      CachingStrategy="RecycleElement">
+                <ListView.Behaviors>
+                    <local:PXC_SelectedItemBehavior />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <lv:SelectableViewCell TypesView="Switch"
+                                               ColorToChange="DeepSkyBlue"
+                                               Command="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}">
+                            <lv:SelectableViewCell.CheckView>
+                                <Switch ThumbColor="#777" OnColor="DeepSkyBlue"/>
+                            </lv:SelectableViewCell.CheckView>
+                            <lv:SelectableViewCell.DataView>
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                         Padding="7"
+                                         Margin="2">
+                                    <Grid x:Name="listitem">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <controls:PXC_Image HeightRequest="35"
+                                                                    WidthRequest="35"
+                                                                    BorderRadius="100"
+                                                                    BorderColor="#ccc"
+                                                                    Grid.Column="0"
+                                                                    BorderWidth="2" 
+                                                                    Source="{Binding Image}"/>
+
+
+                                        <Label Text="{Binding Name}"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           LineBreakMode="TailTruncation"
+                                           Margin="5,0"
+                                           TextColor="Black"
+                                           FontSize="Medium"
+                                           VerticalOptions="Center"/>
+
+                                    </Grid>
+                                </StackLayout>
+                            </lv:SelectableViewCell.DataView>
+                        </lv:SelectableViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

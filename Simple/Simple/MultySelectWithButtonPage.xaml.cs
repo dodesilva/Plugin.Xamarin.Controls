@@ -1,4 +1,6 @@
-﻿using Simple.ViewModel;
+﻿using Plugin.Xamarin.Controls;
+using Plugin.Xamarin.Controls.EnumFiles;
+using Simple.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +20,7 @@ namespace Simple
             InitializeComponent();
             BindingContext = new MultiSendViewModel();
         }
+
+        
     }
 }

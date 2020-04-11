@@ -50,7 +50,7 @@ namespace Plugin.Xamarin.Controls
                     TextColor = radButtons.TextColor,
                     CheckedColor=radButtons.CheckedColor,
                     UnCheckedColor=radButtons.UnCheckedColor,
-                    FontSize = Device.GetNamedSize(NamedSize.Small, radButtons),
+                    FontSize = Device.GetNamedSize(NamedSize.Medium, radButtons),
                     FontName = radButtons.FontName,
 
                 };

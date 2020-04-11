@@ -16,8 +16,9 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
         public PXC_ImageRenderer(Context context):base(context)
         {
             _context = context;
+            
         }
-
+       
         protected override bool DrawChild(Canvas canvas, AndroidViews.View child, long drawingTime)
         {
             var paint = new Paint();
@@ -25,6 +26,7 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
             float radius, borderThickness;
             int strokeWidth = 0;
             bool result;
+
 
             var density = _context.Resources.DisplayMetrics.Density;
 
@@ -38,7 +40,7 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
                 {
                     strokeWidth = (int)Math.Ceiling(borderThickness * density + .5f);
                 }
-
+                
                 radius -= strokeWidth / 2;
                 
                 path.AddCircle(Width / 2.0f, Height / 2.0f, radius, Path.Direction.Ccw);

@@ -10,8 +10,58 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\architep.ttf" />
+    <None Remove="Resources\Chunkfive.otf" />
+    <None Remove="Resources\FFF_Tusj.ttf" />
+    <None Remove="Resources\fontawesome.ttf" />
+    <None Remove="Resources\GreatVibes_Regular.otf" />
+    <None Remove="Resources\icomoon.ttf" />
+    <None Remove="Resources\materialicons.ttf" />
+    <None Remove="Resources\OpenSans_Bold.ttf" />
+    <None Remove="Resources\OpenSans_Regular.ttf" />
+    <None Remove="Resources\PlayfairDisplaySC_BlackItalic.otf" />
+    <None Remove="Resources\PlayfairDisplay_Black.otf" />
+    <None Remove="Resources\PlayfairDisplay_Italic.otf" />
+    <None Remove="Resources\PlayfairDisplay_Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\architep.ttf" />
+    <EmbeddedResource Include="Resources\Chunkfive.otf" />
+    <EmbeddedResource Include="Resources\FFF_Tusj.ttf" />
+    <EmbeddedResource Include="Resources\fontawesome.ttf" />
+    <EmbeddedResource Include="Resources\GreatVibes_Regular.otf" />
+    <EmbeddedResource Include="Resources\icomoon.ttf" />
+    <EmbeddedResource Include="Resources\materialicons.ttf" />
+    <EmbeddedResource Include="Resources\OpenSans_Bold.ttf" />
+    <EmbeddedResource Include="Resources\OpenSans_Regular.ttf" />
+    <EmbeddedResource Include="Resources\PlayfairDisplaySC_BlackItalic.otf" />
+    <EmbeddedResource Include="Resources\PlayfairDisplay_Black.otf" />
+    <EmbeddedResource Include="Resources\PlayfairDisplay_Italic.otf" />
+    <EmbeddedResource Include="Resources\PlayfairDisplay_Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="1.68.1.1" />
+    <PackageReference Include="SkiaSharp.Views" Version="1.68.1.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.1.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

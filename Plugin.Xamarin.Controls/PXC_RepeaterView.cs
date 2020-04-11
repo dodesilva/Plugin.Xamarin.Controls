@@ -80,8 +80,7 @@ namespace Plugin.Xamarin.Controls
                 {
                     Command = command,
                     CommandParameter = commandParameter,
-                    NumberOfTapsRequired = 1,
-
+                    NumberOfTapsRequired = 1
                 });
             }
 

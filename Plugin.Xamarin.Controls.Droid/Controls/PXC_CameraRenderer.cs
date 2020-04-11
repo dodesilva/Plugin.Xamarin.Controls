@@ -38,43 +38,14 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
         protected override void OnElementChanged(ElementChangedEventArgs<PXC_Camera> e)
         {
             base.OnElementChanged(e);
-            var permissions = CameraPermissions();
-            
             if (Control == null && e.NewElement != null)
             {
-
-               
-                if (permissions)
-                { 
                     _cameraDroidView = new CameraDroidView(Context, Element.Camera);
                     SetNativeControl(_cameraDroidView);
                     _cameraDroidView.OnFinichedCapture += _cameraDroidView_OnFinichedCapture;
-                }
-               
             }
         }
 
-        private bool CameraPermissions()
-        {
-            string[] CameraPermissions =
-            {
-                Manifest.Permission.Camera,
-                Manifest.Permission.RecordAudio,
-                Manifest.Permission.WriteExternalStorage,
-                Manifest.Permission.ReadExternalStorage
-            };
-            foreach (string pm in CameraPermissions)
-            {
-                if ((int)Build.VERSION.SdkInt < 23 || ContextCompat.CheckSelfPermission(Android.App.Application.Context, pm) == Permission.Granted)
-                {
-                    return true;
-                }
-            }
-
-            ActivityCompat.RequestPermissions(ActivityResult, CameraPermissions, 1000);
-
-            return false;
-        }
         private void _cameraDroidView_OnFinichedCapture(object sender, MediaFiles e)
         {
 

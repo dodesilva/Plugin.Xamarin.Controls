@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.Xamarin.Controls.MultySelectable;
 using Simple.Models;
@@ -11,14 +13,20 @@ namespace Simple.ViewModel
 {
     public class MultiSendViewModel:BaseViewModel
     {
-        private MultiSelectObservableCollection<MultiModel> _getUserList;
-        public MultiSelectObservableCollection<MultiModel> GetUserList
+        private bool _isRefreshing;
+        private bool _isBusy;
+        public int PageSize = 10;
+        public int pageinsert = 1;
+        private int RefreshDuration = 1;
+
+        private ObservableCollection<SelectableData<MultiModel>> _getUserList;
+        public ObservableCollection<SelectableData<MultiModel>> GetUserList
         {
             get { return _getUserList; }
             set { SetValue(ref _getUserList, value); }
         }
 
-        public List<MultiModel> MultiModels;
+        public List<SelectableData<MultiModel>> MultiModels;
 
         private string _filter;
         public string Filter
@@ -26,35 +34,57 @@ namespace Simple.ViewModel
             get { return _filter; }
             set { SetValue(ref _filter, value); }
         }
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetValue(ref _isRefreshing, value); }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetValue(ref _isBusy, value); }
+        }
+
+        public List<MultiModel> Roomchecked { get; set; }
+
         public MultiSendViewModel()
         {
-            MultiModels = new List<MultiModel>();
+            Roomchecked = new List<MultiModel>();
+            GetUserList = new ObservableCollection<SelectableData<MultiModel>>();
+            MultiModels = new List<SelectableData<MultiModel>>();
             LoadValues();
         }
 
         private void LoadValues()
         {
-            
-           for(int i = 0; i < 10; i++)
+            GetUserList.Clear();
+            for (int i = 0; i < 100; i++)
             {
-                MultiModels.Add(new MultiModel
+                var data = new MultiModel
                 {
                     Image = "ImageTest.jpg",
                     Name = "Test" + i
+                };
+
+                MultiModels.Add(new SelectableData<MultiModel>
+                {
+                    Data = data,
+                    IsSelected = false
                 });
             }
-            Search();
+            GetLoadToList(MultiModels.Skip(0).Take(PageSize).ToList());
         }
 
         private void Search()
         {
             if (string.IsNullOrEmpty(Filter))
             {
-                GetUserList = new MultiSelectObservableCollection<MultiModel>(MultiModels);
+                GetUserList = new ObservableCollection<SelectableData<MultiModel>>(MultiModels);
             }
             else
             {
-                GetUserList = new MultiSelectObservableCollection<MultiModel>(MultiModels.Where(u=>u.Name.ToLower().Contains(Filter.ToLower())));
+                GetUserList = new ObservableCollection<SelectableData<MultiModel>>(MultiModels.Where(u=>(u.Data as MultiModel).Name.ToLower().Contains(Filter.ToLower())));
             }
         }
 
@@ -62,7 +92,7 @@ namespace Simple.ViewModel
         {
             get
             {
-                return new Command<MultiModel>(share);
+                return new Command<SelectableData<MultiModel>>(share);
             }
         }
 
@@ -74,9 +104,63 @@ namespace Simple.ViewModel
             }
         }
 
-        private void share(MultiModel obj)
+        private void share(SelectableData<MultiModel> obj)
         {
-            App.Current.MainPage.DisplayAlert("Share", "Shared with :" + obj.Name, "OK");
+            if (obj != null)
+            {
+                if (!Roomchecked.Any(u => u.Name == (obj.Data as MultiModel).Name) && obj.IsSelected)
+                {
+                    Roomchecked.Add(new MultiModel
+                    {
+                        Image = (obj.Data as MultiModel).Image,
+                        Name = (obj.Data as MultiModel).Name
+                    });
+                    App.Current.MainPage.DisplayAlert("Share", "Shared with :" + (obj.Data as MultiModel).Name + " Total: "+Roomchecked.Count, "OK");
+                }
+                else if(obj.IsSelected==false&& Roomchecked.Any(u => u.Name == (obj.Data as MultiModel).Name))
+                {
+                    var usid = Roomchecked.FirstOrDefault(u => u.Name == (obj.Data as MultiModel).Name);
+                    Roomchecked.Remove(usid);
+                    App.Current.MainPage.DisplayAlert("Share", "Removed :" + (obj.Data as MultiModel).Name + " Total: " + Roomchecked.Count, "OK");
+                }
+
+            }
+        }
+
+        public ICommand LoadMoreCommand
+        {
+            get
+            {
+                return new Command(() => {
+                    TakeMore();
+                });
+            }
+        }
+
+        private async void TakeMore()
+        {
+            IsBusy = true;
+            int TotalCount = MultiModels.Count;
+            int pagerCount = GetUserList.Count;
+            int pg = PageSize * pageinsert;
+            var page = (TotalCount / PageSize) - (TotalCount % PageSize == 0 ? 1 : 0);
+
+            if (pageinsert == 1 || pageinsert < page + 1)
+            {
+                await Task.Delay(TimeSpan.FromSeconds(RefreshDuration));
+                GetLoadToList(MultiModels.Skip(pg).Take(PageSize).ToList());
+                pageinsert++;
+
+            }
+            IsBusy = false;
+        }
+        int id = 0;
+        private void GetLoadToList(List<SelectableData<MultiModel>> list)
+        {
+            foreach (var l in list)
+            {
+                GetUserList.Add(l);
+            }
         }
     }
 }

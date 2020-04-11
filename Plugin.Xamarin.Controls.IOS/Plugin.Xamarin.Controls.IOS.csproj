@@ -41,16 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CameraIOSView.cs" />
+    <Compile Include="Classes\CheckBoxView.cs" />
     <Compile Include="Classes\DrawButtons.cs" />
     <Compile Include="Classes\UIPaintCodeButton.cs" />
-    <Compile Include="Controls\PXC_ButtonRenderer.cs" />
     <Compile Include="Controls\PXC_CameraRenderer.cs" />
     <Compile Include="Controls\PXC_DatePickerRenderer.cs" />
     <Compile Include="Controls\PXC_EditorRenderer.cs" />
     <Compile Include="Controls\PXC_EntryRenderer.cs" />
     <Compile Include="Controls\PXC_GridViewRenderer.cs" />
     <Compile Include="Controls\PXC_ImageRenderer.cs" />
-    <Compile Include="Controls\PXC_Label_UnderLineRenderer.cs" />
+    <Compile Include="Controls\PXC_LabelRenderer.cs" />
     <Compile Include="Controls\PXC_PickerRenderer.cs" />
     <Compile Include="Controls\PXC_RadioButtonRenderer.cs" />
     <Compile Include="Controls\PXC_SearchBarRenderer.cs" />
@@ -64,6 +64,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SkiaSharp">
+      <Version>1.68.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>1.68.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views.Forms">
+      <Version>1.68.1.1</Version>
+    </PackageReference>
     <PackageReference Include="System.Threading.Tasks">
       <Version>4.3.0</Version>
     </PackageReference>
@@ -127,6 +136,18 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Images\switchcamera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\Checkbox\checked_checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\Checkbox\checked_checkbox%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\Checkbox\unchecked_checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\Checkbox\unchecked_checkbox%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

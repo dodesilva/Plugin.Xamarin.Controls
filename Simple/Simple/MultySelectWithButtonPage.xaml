@@ -5,9 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
-             xmlns:lv="clr-namespace:Plugin.Xamarin.Controls.ViewCells;assembly=Plugin.Xamarin.Controls"
-             xmlns:local="clr-namespace:Plugin.Xamarin.Controls.Behaviors;assembly=Plugin.Xamarin.Controls"
-             xmlns:ml="clr-namespace:Plugin.Xamarin.Controls.MultySelectable;assembly=Plugin.Xamarin.Controls"
              x:Class="Simple.MultySelectWithButtonPage">
     
     <ContentPage.Content>
@@ -27,63 +24,37 @@
                                     FillBackGroungColor="#fff"
                                     HasBorder="True"/>
 
-            <ListView ItemsSource="{Binding GetUserList}"
+            <controls:PXC_LIstView ItemsSource="{Binding GetUserList}"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
-                      HasUnevenRows="True" 
-                      ml:MultiSelect.Enable="True"
-                      CachingStrategy="RecycleElement">
-                <ListView.Behaviors>
-                    <local:PXC_SelectedItemBehavior />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
+                      HasUnevenRows="True"
+                      LoadMoreDownCommand="{Binding LoadMoreCommand}">
+                <controls:PXC_LIstView.ItemTemplate>
                     <DataTemplate>
-                        <lv:SelectableViewCell TypesView="Button"
-                                               Command="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}"
-                                               BackColorToChange="#cccccc"
-                                               ColorToChange="#777"
-                                               Icon="Checkmark"
-                                               FontIconName="IconMoon"
-                                               TextToChange="Enviado..">
-                            <lv:SelectableViewCell.CheckView>
-                                <controls:PXC_Button HeightRequest="25"
-                                                     Padding="10,0"
-                                                     BackgroundColor="Transparent"
-                                                     HorizontalOptions="FillAndExpand"
-                                                     VerticalOptions="Center"
-                                                     Icon="fa-send"
-                                                     Text="Enviar"
-                                                     TextFloat="Left"
-                                                     CornerRadius="24"
-                                                     BorderColor="Red"
-                                                     BorderWidth="1"
-                                                     TextColor="Red"
-                                                     FontIconName="FontAwesome"
-                                                     FontSize="Small"/>
-                            </lv:SelectableViewCell.CheckView>
-                            <lv:SelectableViewCell.DataView>
-                                <StackLayout HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand"
                                          Padding="7"
                                          Margin="2">
-                                    <Grid x:Name="listitem">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                <Grid x:Name="listitem">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                        <controls:PXC_Image HeightRequest="35"
+                                    <controls:PXC_Image HeightRequest="35"
                                                                     WidthRequest="35"
                                                                     BorderRadius="100"
                                                                     BorderColor="#ccc"
                                                                     Grid.Column="0"
                                                                     BorderWidth="2" 
-                                                                    Source="{Binding Image}"/>
+                                                                    Source="{Binding Data.Image}"/>
 
 
-                                        <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Data.Name}"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"
@@ -91,14 +62,29 @@
                                            TextColor="Black"
                                            FontSize="Medium"
                                            VerticalOptions="Center"/>
-
-                                    </Grid>
-                                </StackLayout>
-                            </lv:SelectableViewCell.DataView>
-                        </lv:SelectableViewCell>
+                                    <controls:PXC_Button Grid.Column="2" BorderColor="#1CA5B8" BorderWidth="4" Margin="5" CornerRadius="24" HeightRequest="20" IsSelected="{Binding IsSelected}"
+                                                         FontSize="14" StartColor="#1CA5B8" EndColor="#1CA5B8" HorizontalOptions="Center"
+                                                         Command="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}"
+                                                         CommandParameter="{Binding .}" SelectedIconSource="md-done" UseEnabled="True"
+                                                         IconTypeFace="Material" Text="Enviar" SelectedTextColor="#777" HasSelected="True" 
+                                                         SelectedBackgroundColor="#ccc" SelectedText="Enviado.." TextColor="White" IconSource="md-send"/>
+                                    
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </controls:PXC_LIstView.ItemTemplate>
+                <controls:PXC_LIstView.Footer>
+                    <controls:PXC_StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" BorderColor="#777" BorderWidth="2" BorderRadius="10" FillBackGroungColor="#ccc">
+                        <Label Margin="10,5"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Text="Loading.."
+                                   FontSize="Small"
+                                   TextColor="#777"
+                                   FontAttributes="Bold" />
+                    </controls:PXC_StackLayout>
+                </controls:PXC_LIstView.Footer>
+            </controls:PXC_LIstView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

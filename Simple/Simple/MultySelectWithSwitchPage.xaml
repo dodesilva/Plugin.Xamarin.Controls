@@ -26,46 +26,38 @@
                                     FillBackGroungColor="#fff"
                                     HasBorder="True"/>
 
-            <ListView ItemsSource="{Binding GetUserList}"
+            <controls:PXC_LIstView ItemsSource="{Binding GetUserList}"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
-                      HasUnevenRows="True" 
-                      ml:MultiSelect.Enable="True"
-                      CachingStrategy="RecycleElement">
-                <ListView.Behaviors>
-                    <local:PXC_SelectedItemBehavior />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
+                                   LoadMoreDownCommand="{Binding LoadMoreCommand}"
+                      HasUnevenRows="True">
+                <controls:PXC_LIstView.ItemTemplate>
                     <DataTemplate>
-                        <lv:SelectableViewCell TypesView="Switch"
-                                               ColorToChange="DeepSkyBlue"
-                                               Command="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}">
-                            <lv:SelectableViewCell.CheckView>
-                                <Switch ThumbColor="#777" OnColor="DeepSkyBlue"/>
-                            </lv:SelectableViewCell.CheckView>
-                            <lv:SelectableViewCell.DataView>
-                                <StackLayout HorizontalOptions="FillAndExpand"
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand"
                                          Padding="7"
                                          Margin="2">
-                                    <Grid x:Name="listitem">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                <Grid x:Name="listitem">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                    </Grid.RowDefinitions>
 
-                                        <controls:PXC_Image HeightRequest="35"
-                                                                    WidthRequest="35"
-                                                                    BorderRadius="100"
-                                                                    BorderColor="#ccc"
-                                                                    Grid.Column="0"
-                                                                    BorderWidth="2" 
-                                                                    Source="{Binding Image}"/>
+                                    <controls:PXC_Image HeightRequest="40"
+                                                        WidthRequest="40"
+                                                        VerticalOptions="Center"
+                                                        BorderRadius="100"
+                                                        BorderColor="#ccc"
+                                                        Grid.Column="0"
+                                                        BorderWidth="2" 
+                                                        Source="{Binding Data.Image}"/>
 
 
-                                        <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Data.Name}"
                                            Grid.Column="1"
                                            HorizontalOptions="StartAndExpand"
                                            LineBreakMode="TailTruncation"
@@ -73,14 +65,27 @@
                                            TextColor="Black"
                                            FontSize="Medium"
                                            VerticalOptions="Center"/>
+                                    <controls:PXC_Switch IsToggled="{Binding IsSelected}" Grid.Column="2" VerticalOptions="Center"
+                                                         ToggledCommand="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}"
+                                                         ToggledCommandParameter="{Binding .}"
+                                                         ToggledColor="LightSkyBlue" ThumbColor="White" UnToggledColor="LightGray"/>
 
-                                    </Grid>
-                                </StackLayout>
-                            </lv:SelectableViewCell.DataView>
-                        </lv:SelectableViewCell>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </controls:PXC_LIstView.ItemTemplate>
+                <controls:PXC_LIstView.Footer>
+                    <controls:PXC_StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" BorderColor="#777" BorderWidth="2" BorderRadius="10" FillBackGroungColor="#ccc">
+                        <Label Margin="10,5"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Text="Loading.."
+                                   FontSize="Small"
+                                   TextColor="#777"
+                                   FontAttributes="Bold" />
+                    </controls:PXC_StackLayout>
+                </controls:PXC_LIstView.Footer>
+            </controls:PXC_LIstView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

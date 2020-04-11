@@ -26,6 +26,9 @@ using Plugin.Xamarin.Controls.Helpers;
 using Xamform = Xamarin.Forms;
 using Boolean = Java.Lang.Boolean;
 using Math = Java.Lang.Math;
+using Android;
+using Android.Support.V4.Content;
+using Android.Support.V4.App;
 
 namespace Plugin.Xamarin.Controls.Droid.Classes
 {
@@ -67,9 +70,9 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
         // Camera state: Picture was taken.
         public const int STATE_PICTURE_TAKEN = 4;
         // Max preview width that is guaranteed by Camera2 API
-        public static readonly int MAX_PREVIEW_WIDTH = 1920;
+        public static readonly int MAX_PREVIEW_WIDTH = 460;
         // Max preview height that is guaranteed by Camera2 API
-        public static readonly int MAX_PREVIEW_HEIGHT = 1280;
+        public static readonly int MAX_PREVIEW_HEIGHT = 680;
         // ID of the current {@link CameraDevice}.
         public CameraOptions mCameraId { get; set; }
         public int textwidth { get; set; }
@@ -158,7 +161,7 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
         private async void MOnImageAvailableListener_Photo(object sender, byte[] buffer)
         {
 
-            VideoFuulPath = AndroidImageHelper.SaveFile(buffer, "Ds Call", "Image");
+            VideoFuulPath = AndroidImageHelper.SaveFile(buffer, "Ds Call");
 
             var imgsource = await AndroidImageHelper.RotateImage(buffer);
             var media = new MediaFiles
@@ -272,9 +275,17 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
             try
             {
                 if (mCameraId == CameraOptions.Rear)
+                {
+                    mFlashState = FLASH_STATE_OFF;
+                    flashButton.SetImageResource(Resource.Drawable.ic_flash_off);
+                    flashButton.Visibility = ViewStates.Invisible;
                     mCameraId = CameraOptions.Front;
+                }
                 else if (mCameraId == CameraOptions.Front)
+                {
+                    flashButton.Visibility = ViewStates.Visible;
                     mCameraId = CameraOptions.Rear;
+                }
                 CloseCamera();
                 OpenCamera(mTextureView.Width, mTextureView.Height);
             }
@@ -380,29 +391,59 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
             }
             mTextureView.SetTransform(matrix);
         }
+
+        private bool CameraPermissions()
+        {
+            string[] CameraPermissions =
+            {
+                Manifest.Permission.Camera,
+                Manifest.Permission.RecordAudio,
+                Manifest.Permission.WriteExternalStorage,
+                Manifest.Permission.ReadExternalStorage
+            };
+            foreach (string pm in CameraPermissions)
+            {
+                if ((int)Build.VERSION.SdkInt < 23 || ContextCompat.CheckSelfPermission(Android.App.Application.Context, pm) == Permission.Granted)
+                {
+                    return true;
+                }
+            }
+
+            ActivityCompat.RequestPermissions(Activityresult, CameraPermissions, 1000);
+
+            return false;
+        }
         public void OpenCamera(int width, int height)
         {
-            SetUpCameraOutputs(width, height);
-            ConfigureTransform(width, height);
-            var manager = (CameraManager)_context.GetSystemService(Context.CameraService);
-            try
+            if (!CameraPermissions())
             {
-                if (!mCameraOpenCloseLock.TryAcquire(2500, TimeUnit.Milliseconds))
+                return;
+            }
+            else
+            {
+                SetUpCameraOutputs(width, height);
+                ConfigureTransform(width, height);
+                var manager = (CameraManager)_context.GetSystemService(Context.CameraService);
+                try
                 {
-                    throw new RuntimeException("Time out waiting to lock camera opening.");
+                    if (!mCameraOpenCloseLock.TryAcquire(2500, TimeUnit.Milliseconds))
+                    {
+                        throw new RuntimeException("Time out waiting to lock camera opening.");
+                    }
+
+                    mediaRecorder = new MediaRecorder();
+                    var cameraId = manager.GetCameraIdList()[(int)mCameraId];
+                    manager.OpenCamera(cameraId, mStateCallback, mBackgroundHandler);
+                }
+                catch (CameraAccessException e)
+                {
+                    e.PrintStackTrace();
+                }
+                catch (InterruptedException e)
+                {
+                    throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
                 }
 
-                mediaRecorder = new MediaRecorder();
-                var cameraId = manager.GetCameraIdList()[(int)mCameraId];
-                manager.OpenCamera(cameraId, mStateCallback, mBackgroundHandler);
-            }
-            catch (CameraAccessException e)
-            {
-                e.PrintStackTrace();
-            }
-            catch (InterruptedException e)
-            {
-                throw new RuntimeException("Interrupted while trying to lock camera opening.", e);
             }
         }
         private void CloseCamera()

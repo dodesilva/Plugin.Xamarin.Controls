@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:bh="clr-namespace:Plugin.Xamarin.Controls.Behaviors;assembly=Plugin.Xamarin.Controls"
+             xmlns:control="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
+             xmlns:vl="clr-namespace:Plugin.Xamarin.Controls.ViewCells;assembly=Plugin.Xamarin.Controls"
+             xmlns:ms="clr-namespace:Plugin.Xamarin.Controls.MultySelectable;assembly=Plugin.Xamarin.Controls"
+             x:Class="Simple.CollectionViewLoadMorePage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="listParti">
+            <Label x:Name="scrl" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="30"/>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <control:PXC_CollectionView ItemsSource="{Binding GetUserList}"
+                            HorizontalOptions="FillAndExpand"
+                                            LoadMoreDownCommand="{Binding LoadMoreCommand}"
+                            VerticalOptions="FillAndExpand">
+                    <control:PXC_CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+                                <Image HeightRequest="50" WidthRequest="50" VerticalOptions="Center" HorizontalOptions="Start" Source="{Binding Data.Image}"/>
+                                <Label Text="{Binding Data.Name}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="Large"/>
+                                <control:PXC_Checkbox BorderWidth="5" CheckedColor="Red" IconTypeFace="Material"
+                                                      UnCheckedColor="Gray" IconSource="md-check-box" IsChecked="{Binding IsSelected}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                </control:PXC_CollectionView.ItemTemplate>
+                <control:PXC_CollectionView.Footer>
+                        <control:PXC_StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" BorderColor="#777" BorderWidth="2" BorderRadius="10" FillBackGroungColor="#ccc">
+                            <Label Margin="10,5"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Text="Loading.."
+                                   FontSize="Small"
+                                   TextColor="#777"
+                                   FontAttributes="Bold" />
+                        </control:PXC_StackLayout>
+                    </control:PXC_CollectionView.Footer>
+                </control:PXC_CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

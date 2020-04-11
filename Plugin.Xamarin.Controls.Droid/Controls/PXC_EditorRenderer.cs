@@ -45,7 +45,7 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
                 {
                     Control.Typeface = TrySetFont(view.FontName);
                 }
-
+               
                 GetTextAlignment(view.TextAlignment);
                 Control.SetPadding((int)view.Padding.Left, (int)view.Padding.Top, (int)view.Padding.Right, (int)view.Padding.Bottom);
             }

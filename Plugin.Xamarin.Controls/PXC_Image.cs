@@ -8,40 +8,26 @@ namespace Plugin.Xamarin.Controls
     {
         public event EventHandler Clicked;
 
-        public static readonly BindableProperty BorderWidthProperty =
-          BindableProperty.Create(propertyName: nameof(BorderWidth),
-              returnType: typeof(int),
-              declaringType: typeof(PXC_Image),
-              defaultValue: 0);
-
+        public static readonly BindableProperty BorderWidthProperty = BindableProperty.Create(propertyName: nameof(BorderWidth),
+              returnType: typeof(int),declaringType: typeof(PXC_Image),defaultValue: 0);
        
         public int BorderWidth
         {
             get { return (int)GetValue(BorderWidthProperty); }
             set { SetValue(BorderWidthProperty, value); }
         }
-
        
-        public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(propertyName: nameof(BorderColor),
-              returnType: typeof(Color),
-              declaringType: typeof(PXC_Image),
-              defaultValue: Color.White);
-
-
-       
+        public static readonly BindableProperty BorderColorProperty =BindableProperty.Create(propertyName: nameof(BorderColor),
+              returnType: typeof(Color),declaringType: typeof(PXC_Image), defaultValue: Color.White);
+      
         public Color BorderColor
         {
             get { return (Color)GetValue(BorderColorProperty); }
             set { SetValue(BorderColorProperty, value); }
         }
-
-        
-        public static readonly BindableProperty FillBackGroungColorProperty =
-            BindableProperty.Create(propertyName: nameof(FillBackGroungColor),
-              returnType: typeof(Color),
-              declaringType: typeof(PXC_Image),
-              defaultValue: Color.Transparent);
+      
+        public static readonly BindableProperty FillBackGroungColorProperty = BindableProperty.Create(propertyName: nameof(FillBackGroungColor),
+              returnType: typeof(Color),declaringType: typeof(PXC_Image), defaultValue: Color.Transparent);
 
        
         public Color FillBackGroungColor
@@ -90,9 +76,10 @@ namespace Plugin.Xamarin.Controls
         {
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += OnTapped;
-            GestureRecognizers.Add(tgr);            
+            GestureRecognizers.Add(tgr);
         }
 
+       
         protected void OnTapped(object s, EventArgs e)
         {
             if (Command != null && Command.CanExecute(null))

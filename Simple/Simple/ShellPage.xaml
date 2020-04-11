@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+       xmlns:local="clr-namespace:Simple"
+             x:Class="Simple.ShellPage">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#ffffff</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#1CA5B8" />
+                <Setter Property="Shell.ForegroundColor" Value="#ffffff" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="Red" />
+                <Setter Property="Shell.UnselectedColor" Value="Red" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#1CA5B8"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#777777"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#1CA5B8"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <!-- Your Pages -->
+    <TabBar>
+        <Tab Title="Home" Icon="ic_house.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+        <Tab Title="Contact" Icon="ic_document.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CollectionViewLoadMorePage}" />
+        </Tab>
+        <Tab Title="Pessoas" Icon="ic_people_outline.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SegmentPage}" />
+        </Tab>
+        <Tab Title="Pessoas" Icon="ic_people_outline.png">
+            <ShellContent ContentTemplate="{DataTemplate local:FlaxPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

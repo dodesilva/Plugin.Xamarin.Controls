@@ -53,22 +53,17 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
             return returnValue;
         }
 
-        public static string SaveFile(byte[] imageByte, string folder = null, string subfolder = null)
+        public static string SaveFile(byte[] imageByte, string folder = null)
         {
 
             Java.IO.File mFile = null;
-            if (string.IsNullOrEmpty(folder) || string.IsNullOrEmpty(subfolder))
+            if (string.IsNullOrEmpty(folder))
             {
-                if (string.IsNullOrEmpty(folder))
-                    mFile = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), subfolder);
-                else if (string.IsNullOrEmpty(subfolder))
-                    mFile = new Java.IO.File(folder, "Image");
-                else if (string.IsNullOrEmpty(folder) && string.IsNullOrEmpty(subfolder))
-                    mFile = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), "Image");
+                mFile = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), "Image");
             }
             else
             {
-                mFile = new Java.IO.File(Android.OS.Environment.ExternalStorageDirectory + "/" + folder, subfolder);
+                mFile = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), folder);
             }
             if (!mFile.Exists())
             {
@@ -81,7 +76,7 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
             return file;
         }
 
-        public static async Task<byte[]> RotateImage(string path)
+        public static byte[] RotateImage(string path)
         {
             byte[] imageBytes;
 
@@ -103,7 +98,7 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
 
             using (var ms = new MemoryStream())
             {
-               await rotatedImage.CompressAsync(Bitmap.CompressFormat.Jpeg, 90, ms);
+               rotatedImage.Compress(Bitmap.CompressFormat.Jpeg, 90, ms);
                 imageBytes = ms.ToArray();
             }
 
@@ -140,7 +135,7 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
 
             return ImageSource.FromStream(() => stream);
         }
-        private static int GetRotation(byte[]buffer)
+        public static int GetRotation(byte[]buffer)
         {
             var filestream = new MemoryStream(buffer);
             using (var ei = new ExifInterface(filestream))
@@ -161,7 +156,7 @@ namespace Plugin.Xamarin.Controls.Droid.Classes
             }
         }
 
-        private static int GetRotation(string filePath)
+        public static int GetRotation(string filePath)
         {
             using (var ei = new ExifInterface(filePath))
             {

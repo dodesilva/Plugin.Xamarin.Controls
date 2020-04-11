@@ -19,7 +19,15 @@
                     CornerRadius="24"
                     Text="Open Camera"
                     TextColor="Red"/>
-            <Image HeightRequest="200"
+                <controls:PXC_Label HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"
+                                                       Icon="{Binding Icon}"
+                                                       TextColor="#1CA5B8"
+                                                       FontIconName="Material"
+                                                       FontSize="35"/>
+                <Image HeightRequest="200"
                    Margin="10"
                    IsVisible="{Binding IsImage}"
                    HorizontalOptions="FillAndExpand"

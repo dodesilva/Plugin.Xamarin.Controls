@@ -33,33 +33,42 @@ namespace Plugin.Xamarin.Controls.Forms.IOS.Controls
             if (Control == null || Element == null)
                 throw new InvalidOperationException(String.Format("Cannot convert {0} into {1}", Element.Text, typeof(Icon)));         
             var view = (PXC_Button)Element;
-            Control.ContentEdgeInsets = new UIEdgeInsets((int)view.Padding.Left, (int)view.Padding.Top, (int)view.Padding.Right, (int)view.Padding.Bottom);
-            if (!String.IsNullOrEmpty(((PXC_Button)Element).Icon))
+            if (!string.IsNullOrEmpty(((PXC_Button)Element).Icon))
             {
-                Control.Font = UIFont.FromName(Helpers.Extensions.FindNameForFont(((PXC_Button)Element).FontIconName), (nfloat)Element.FontSize);
-                IIcon icon = Helpers.Extensions.FindIconForKey(((PXC_Button)Element).Icon,((PXC_Button)Element).FontIconName);
-                if (string.IsNullOrEmpty(view.Text))
+                if (view.FontIconName != Fonts.None)
                 {
-                    Control.SetTitle(string.Format("{0}", icon.Character), UIControlState.Normal);
-                }
-                else
-                {
-                    if (icon != null)
+                    Control.Font = UIFont.FromName(Helpers.Extensions.FindNameForFont(((PXC_Button)Element).FontIconName), (nfloat)Element.FontSize);
+                    IIcon icon = Helpers.Extensions.FindIconForKey(((PXC_Button)Element).Icon, ((PXC_Button)Element).FontIconName);
+                    if (string.IsNullOrEmpty(view.Text))
                     {
-                        switch (view.TextFloat)
+                        if (icon != null)
                         {
-                            case TextFloting.Left:
-                                Control.SetTitle(string.Format("{0} {1}", view.Text, icon.Character), UIControlState.Normal);
-                                break;
-                            case TextFloting.Right:
-                                Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
-                                break;
-                            default:
-                                Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
-                                break;
+                            Control.SetTitle("", UIControlState.Normal);
+                            Control.SetTitle(string.Format("{0}", icon.Character), UIControlState.Normal);
                         }
                     }
-                }              
+                    else
+                    {
+                        if (icon != null)
+                        {
+                            if (!view.Text.Contains(icon.Character))
+                            {
+                                switch (view.TextFloat)
+                                {
+                                    case TextFloting.Left:
+                                        Control.SetTitle(string.Format("{0} {1}", view.Text, icon.Character), UIControlState.Normal);
+                                        break;
+                                    case TextFloting.Right:
+                                        Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
+                                        break;
+                                    default:
+                                        Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }           
             }
             else
             {
@@ -78,30 +87,36 @@ namespace Plugin.Xamarin.Controls.Forms.IOS.Controls
             if (e.PropertyName == PXC_Button.IconProperty.PropertyName ||e.PropertyName == PXC_Button.FontIconProperty.PropertyName)
             {
                 var view = (PXC_Button)Element;
-                Control.ContentEdgeInsets = new UIEdgeInsets((int)view.Padding.Left, (int)view.Padding.Top, (int)view.Padding.Right, (int)view.Padding.Bottom);
-                if (!String.IsNullOrEmpty(((PXC_Button)Element).Icon))
+                if (!string.IsNullOrEmpty(((PXC_Button)Element).Icon))
                 {
                     Control.Font = UIFont.FromName(Helpers.Extensions.FindNameForFont(((PXC_Button)Element).FontIconName), (nfloat)Element.FontSize);
-                    IIcon icon = Helpers.Extensions.FindIconForKey(((PXC_Button)Element).Icon,((PXC_Button)Element).FontIconName);
+                    IIcon icon = Helpers.Extensions.FindIconForKey(((PXC_Button)Element).Icon, ((PXC_Button)Element).FontIconName);
                     if (string.IsNullOrEmpty(view.Text))
                     {
-                        Control.SetTitle(string.Format("{0}",icon.Character), UIControlState.Normal);
+                        if (icon != null)
+                        {
+                            Control.SetTitle("", UIControlState.Normal);
+                            Control.SetTitle(string.Format("{0}", icon.Character), UIControlState.Normal);
+                        }
                     }
                     else
                     {
                         if (icon != null)
                         {
-                            switch (view.TextFloat)
+                            if (!view.Text.Contains(icon.Character))
                             {
-                                case TextFloting.Left:
-                                    Control.SetTitle(string.Format("{0} {1}", view.Text, icon.Character), UIControlState.Normal);
-                                    break;
-                                case TextFloting.Right:
-                                    Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
-                                    break;
-                                default:
-                                    Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
-                                    break;
+                                switch (view.TextFloat)
+                                {
+                                    case TextFloting.Left:
+                                        Control.SetTitle(string.Format("{0} {1}", view.Text, icon.Character), UIControlState.Normal);
+                                        break;
+                                    case TextFloting.Right:
+                                        Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
+                                        break;
+                                    default:
+                                        Control.SetTitle(string.Format("{0} {1}", icon.Character, view.Text), UIControlState.Normal);
+                                        break;
+                                }
                             }
                         }
                     }

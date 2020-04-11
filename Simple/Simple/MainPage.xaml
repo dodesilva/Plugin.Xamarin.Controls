@@ -20,11 +20,11 @@
                                       Padding="10"
                                       Orientation="Vertical"
                                       HorizontalOptions="FillAndExpand">
-                    <controls:PXC_Label_UnderLine Text="Image Style"
-                                              TextColor="Black"
-                                              FontSize="Large"
-                                                  IsUnderline="True"
-                                              HorizontalOptions="CenterAndExpand"
+                    <controls:PXC_Label Text="Image Style"
+                                                  TextColor="Black"
+                                                  FontSize="Large"
+                                                  TextDecorations="Underline"
+                                                  HorizontalOptions="CenterAndExpand"
                                                   FontName="architep"/>
                     <StackLayout Orientation="Horizontal"
                              Margin="0,5"
@@ -69,16 +69,22 @@
                                     Source="ImageTest.jpg"/>
                     </StackLayout>
                 </controls:PXC_StackLayout>
+                <controls:PXC_Label Text="Label icon"
+                                    Icon="Play2"
+                                     TextFloat="Right"
+                                    FontIconName="IconMoon"
+                                              TextColor="Black"
+                                              FontSize="Large"
+                                              HorizontalOptions="CenterAndExpand"/>
                 <controls:PXC_StackLayout BorderColor="#ccc"
                                       BorderRadius="10"
                                       BorderWidth="2"
                                       Margin="5"
                                       Orientation="Vertical"
                                       HorizontalOptions="FillAndExpand">
-                    <controls:PXC_Label_UnderLine Text="Radio Button Style"
+                    <controls:PXC_Label Text="Radio Button Style"
                                               TextColor="Black"
                                               FontSize="Large"
-                                                  IsUnderline="True"
                                               HorizontalOptions="CenterAndExpand"
                                                   FontName="FFF_Tusj"/>
                     <StackLayout Orientation="Horizontal"
@@ -98,10 +104,9 @@
                                           Padding="10"
                                       Orientation="Vertical"
                                       HorizontalOptions="FillAndExpand">
-                    <controls:PXC_Label_UnderLine Text="Button Style"
+                    <controls:PXC_Label Text="Button Style"
                                               TextColor="Black"
                                               FontSize="Large"
-                                                  IsUnderline="True"
                                               HorizontalOptions="CenterAndExpand"
                                                   FontName="Chunkfive"/>
                     <StackLayout Orientation="Horizontal"
@@ -171,7 +176,7 @@
                                      Padding="5"
                                      HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="Center"
-                                     Icon="Youtube"
+                                     Icon="Logout"
                                      BackgroundColor="Transparent"
                                      TextColor="Red"
                                      BorderColor="Red"

@@ -19,11 +19,12 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
     public class PXC_ButtonRenderer : ButtonRenderer
     {
         Context _context;
+
         public PXC_ButtonRenderer(Context context) : base(context)
         {
             _context = context;
         }
-        
+
         protected override void OnElementChanged(ElementChangedEventArgs<global::Xamarin.Forms.Button> e)
         {
             base.OnElementChanged(e);
@@ -36,30 +37,42 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
             }
 
             var view = (PXC_Button)Element;
-            //Control.SetPadding((int)view.Padding.Left, (int)view.Padding.Top, (int)view.Padding.Right, (int)view.Padding.Bottom);
 
             if (!String.IsNullOrEmpty(view.Icon))
             {
-                Control.Typeface = Typeface.CreateFromAsset(_context.Assets, Helpers.Extensions.FindNameFileForFont(view.FontIconName));
+                if (view.FontIconName != Fonts.None)
+                {
+                    Control.Typeface = Typeface.CreateFromAsset(_context.Assets, Helpers.Extensions.FindNameFileForFont(view.FontIconName));
 
-                IIcon icon = Helpers.Extensions.FindIconForKey(view.Icon, view.FontIconName);
-                if (string.IsNullOrEmpty(view.Text))
-                {
-                    view.Text = string.Format("{0}", icon.Character);
-                }
-                else
-                {
-                    switch (view.TextFloat)
+                    IIcon icon = Helpers.Extensions.FindIconForKey(view.Icon, view.FontIconName);
+                    if (string.IsNullOrEmpty(view.Text))
                     {
-                        case TextFloting.Left:
-                            view.Text = string.Format("{0} {1}", view.Text, icon.Character);
-                            break;
-                        case TextFloting.Right:
-                            view.Text = string.Format("{0} {1}", icon.Character, view.Text);
-                            break;
-                        default:
-                            view.Text = string.Format("{0} {1}", icon.Character, view.Text);
-                            break;
+                        if (icon != null)
+                        {
+                            view.Text = string.Empty;
+                            view.Text = string.Format("{0}", icon.Character);
+                        }
+                    }
+                    else
+                    {
+                        if (icon != null)
+                        {
+                            if (!view.Text.Contains(icon.Character))
+                            {
+                                switch (view.TextFloat)
+                                {
+                                    case TextFloting.Left:
+                                        view.Text = string.Format("{0} {1}", view.Text, icon.Character);
+                                        break;
+                                    case TextFloting.Right:
+                                        view.Text = string.Format("{0} {1}", icon.Character, view.Text);
+                                        break;
+                                    default:
+                                        view.Text = string.Format("{0} {1}", icon.Character, view.Text);
+                                        break;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -69,44 +82,54 @@ namespace Plugin.Xamarin.Controls.Droid.Controls
                 view.Text = view.Text;
             }
         }
-        
+
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
 
-            var view = (PXC_Button)Element;
-
-            if ( e.PropertyName == PXC_Button.FontIconProperty.PropertyName ||e.PropertyName == PXC_Button.IconProperty.PropertyName )
+            if (e.PropertyName == PXC_Button.FontIconProperty.PropertyName || e.PropertyName == PXC_Button.IconProperty.PropertyName)
             {
-                //Control.SetPadding((int)view.Padding.Left, (int)view.Padding.Top, (int)view.Padding.Right, (int)view.Padding.Bottom);
+                var view = (PXC_Button)Element;
+
                 if (!String.IsNullOrEmpty(view.Icon))
                 {
-                    Control.Typeface = Typeface.CreateFromAsset(_context.Assets, Helpers.Extensions.FindNameFileForFont(view.FontIconName));
+                    if (view.FontIconName != Fonts.None)
+                    {
+                        Control.Typeface = Typeface.CreateFromAsset(_context.Assets, Helpers.Extensions.FindNameFileForFont(view.FontIconName));
 
-                    IIcon icon = Helpers.Extensions.FindIconForKey(view.Icon, view.FontIconName);
-                    if (string.IsNullOrEmpty(view.Text))
-                    {
-                        view.Text = string.Format("{0}", icon.Character);
-                    }
-                    else
-                    {
-                        if (icon != null)
+                        IIcon icon = Helpers.Extensions.FindIconForKey(view.Icon, view.FontIconName);
+                        if (string.IsNullOrEmpty(view.Text))
                         {
-                            switch (view.TextFloat)
+                            if (icon != null)
                             {
-                                case TextFloting.Left:
-                                    view.Text = string.Format("{0} {1}", view.Text, icon.Character);
-                                    break;
-                                case TextFloting.Right:
-                                    view.Text = string.Format("{0} {1}", icon.Character, view.Text);
-                                    break;
-                                default:
-                                    view.Text = string.Format("{0} {1}", icon.Character, view.Text);
-                                    break;
+                                view.Text = string.Empty;
+                                view.Text = string.Format("{0}", icon.Character);
+                            }
+                        }
+                        else
+                        {
+                            if (icon != null)
+                            {
+                                if (!view.Text.Contains(icon.Character))
+                                {
+                                    switch (view.TextFloat)
+                                    {
+                                        case TextFloting.Left:
+                                            view.Text = string.Format("{0} {1}", view.Text, icon.Character);
+                                            break;
+                                        case TextFloting.Right:
+                                            view.Text = string.Format("{0} {1}", icon.Character, view.Text);
+                                            break;
+                                        default:
+                                            view.Text = string.Format("{0} {1}", icon.Character, view.Text);
+                                            break;
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
                 else
                 {
                     Control.Typeface = Typeface.Create(Element.FontFamily, TypefaceStyle.Normal);

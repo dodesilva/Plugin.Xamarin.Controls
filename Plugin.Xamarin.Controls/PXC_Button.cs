@@ -5,8 +5,6 @@ namespace Plugin.Xamarin.Controls
 {
     public class PXC_Button:Button
     {
-        public static readonly BindableProperty ItemPaddingProperty =
-            BindableProperty.Create(nameof(ItemPadding), typeof(Thickness), typeof(PXC_Button), new Thickness(0), defaultBindingMode: BindingMode.OneWay);
 
         public static readonly BindableProperty FontIconProperty =
         BindableProperty.Create(nameof(FontIconName), typeof(Fonts), typeof(PXC_Button), Fonts.None);
@@ -35,11 +33,5 @@ namespace Plugin.Xamarin.Controls
             set { SetValue(IconProperty, value); }
         }
 
-        public Thickness ItemPadding
-        {
-            get { return (Thickness)GetValue(ItemPaddingProperty); }
-            set { SetValue(ItemPaddingProperty, value); }
-        }
-        
     }
 }

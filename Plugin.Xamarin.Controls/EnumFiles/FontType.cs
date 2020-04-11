@@ -8,6 +8,7 @@ namespace Plugin.Xamarin.Controls.EnumFiles
 {
     public enum FontType
     {
+        None,
         FontAwesome,
         Chunkfive,
         FFF_Tusj,

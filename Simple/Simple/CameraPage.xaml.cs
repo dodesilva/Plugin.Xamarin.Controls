@@ -22,6 +22,7 @@ namespace Simple
             BindingContext = this;
             IsVideo = false;
             IsImage = false;
+            Icon = "md-edit";
         }
 
         private bool ispaused = false;
@@ -67,7 +68,20 @@ namespace Simple
                 }
             }
         }
-       
+
+        private string _icon;
+        public string Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    OnPropertyChanged(nameof(Icon));
+                }
+            }
+        }
 
         private bool _isvideoVisible;
         public bool IsVideo

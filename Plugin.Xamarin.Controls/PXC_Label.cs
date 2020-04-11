@@ -5,17 +5,39 @@ using Xamarin.Forms;
 
 namespace Plugin.Xamarin.Controls
 {
-    public class PXC_Label_UnderLine:Label
+    public class PXC_Label:Label
     {
         public event EventHandler Clicked;
-        /// <summary>
-        /// The is underlined property.
-        /// </summary>
-        public static readonly BindableProperty IsUnderlineProperty =
-            BindableProperty.Create(nameof(IsUnderline), typeof(bool), typeof(PXC_Label_UnderLine), false);
+
+        public static readonly BindableProperty FontIconProperty =
+        BindableProperty.Create(nameof(FontIconName), typeof(Fonts), typeof(PXC_Label), Fonts.None);
+
+        public static readonly BindableProperty IconProperty =
+       BindableProperty.Create(nameof(Icon), typeof(string), typeof(PXC_Label), string.Empty);
+
+        public static readonly BindableProperty TextFloatProperty =
+            BindableProperty.Create(nameof(TextFloat), typeof(TextFloting), typeof(PXC_Label), default(TextFloting));
+
+        public TextFloting TextFloat
+        {
+            get { return (TextFloting)GetValue(TextFloatProperty); }
+            set { SetValue(TextFloatProperty, value); }
+        }
+
+        public Fonts FontIconName
+        {
+            get { return (Fonts)GetValue(FontIconProperty); }
+            set { SetValue(FontIconProperty, value); }
+        }
+
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
 
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(PXC_Label_UnderLine), default(object), BindingMode.OneWay);
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(PXC_Label), default(object), BindingMode.OneWay);
 
         public object CommandParameter
         {
@@ -24,34 +46,19 @@ namespace Plugin.Xamarin.Controls
         }
 
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(PXC_Label_UnderLine), null, BindingMode.OneWay);
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(PXC_Label), null, BindingMode.OneWay);
 
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
-        /// <summary>
-        /// Gets or sets a value indicating whether the text in the label is underlined.
-        /// </summary>
-        /// <value>A <see cref="bool"/> indicating if the text in the label should be underlined.</value>
-        public bool IsUnderline
-        {
-            get
-            {
-                return (bool)GetValue(IsUnderlineProperty);
-            }
-            set
-            {
-                SetValue(IsUnderlineProperty, value);
-            }
-        }
-
+       
         /// <summary>
         /// The font name property.
         /// </summary>
         public static readonly BindableProperty FontNameProperty =
-            BindableProperty.Create(nameof(FontName), typeof(FontType), typeof(PXC_Label_UnderLine), FontType.architep);
+            BindableProperty.Create(nameof(FontName), typeof(FontType), typeof(PXC_Label), FontType.None);
 
         /// <summary>
         /// Gets or sets the name of the font file including extension. If no extension given then ttf is assumed.
@@ -70,9 +77,7 @@ namespace Plugin.Xamarin.Controls
             }
         }
 
-        public int MaxLines { get; set; }
-
-        public PXC_Label_UnderLine()
+        public PXC_Label()
         {
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += OnTapped;

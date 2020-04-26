@@ -115,5 +115,8 @@ private void segment_SelectedItemChanged(object sender, SelectedItemChangedEvent
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-004149.jpg)
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-004156.jpg)
 
+### Inconvenient
+This plugin is not tested on ios;
+
 #### License
 Licensed under MIT, see license file

@@ -38,7 +38,9 @@ xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Co
                     SelectedText="Enviado.." 
                     TextColor="White" 
                     IconSource="md-send"/>
-```                   
+```           
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215756.jpg)
+
 if you will your button change color and text when is clicked
 you can set (HasSelected to True) and enabled your button set (UseEnable to true).
 
@@ -51,7 +53,9 @@ you can set (HasSelected to True) and enabled your button set (UseEnable to true
                        UnCheckedColor="Gray" 
                        IconSource="md-check-box" 
                        IsChecked="{Binding IsSelected}"/>
-```                     
+```    
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215824.jpg)
+
 **SWITCH:**
 ```xml
 <controls:PXC_Switch IsToggled="{Binding IsSelected}" 
@@ -62,6 +66,7 @@ you can set (HasSelected to True) and enabled your button set (UseEnable to true
                      ThumbColor="White" 
                      UnToggledColor="LightGray"/>
 ```                    
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215923.jpg)
 
 **For Multi Select you can use:**
 
@@ -107,9 +112,6 @@ private void segment_SelectedItemChanged(object sender, SelectedItemChangedEvent
 }
 ```
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-220033.jpg)
-![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215824.jpg)
-![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215923.jpg)
-![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215756.jpg)
 
 #### License
 Licensed under MIT, see license file

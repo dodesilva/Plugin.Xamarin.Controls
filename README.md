@@ -95,6 +95,8 @@ Set IsHorizontal to true if you using collectioview on Horizontal
             <Grid x:Name="gridcontrol"/>
 </StackLayout>
 ```
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-005936.jpg)
+
 ```csharp
 using Plugin.Xamarin.Controls.Helpers;
 

@@ -12,10 +12,13 @@ namespace Plugin.Xamarin.Controls
 {
     public class PXC_Button : SKCanvasView
     {
+<<<<<<< HEAD
         #region Bindable
         public static BindableProperty SelectedBackgroundColorProperty = BindableProperty.Create(nameof(SelectedBackgroundColor), typeof(Color),
             typeof(PXC_Button), Color.Transparent, BindingMode.OneWay,
             validateValue: (_, value) => value != null, propertyChanged: OnPropertyChangedInvalidate);
+=======
+>>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
 
         public static readonly BindableProperty BorderWidthProperty = BindableProperty.Create(nameof(BorderWidth), typeof(float), typeof(PXC_Button), (float)0f, BindingMode.OneWay,
             validateValue: (_, value) => value != null && (float)value >= 0,
@@ -347,6 +350,7 @@ namespace Plugin.Xamarin.Controls
             }
         }
 
+<<<<<<< HEAD
         protected override void OnTouch(SKTouchEventArgs e)
         {
             switch (e.ActionType)
@@ -378,5 +382,7 @@ namespace Plugin.Xamarin.Controls
             var assembly = GetType().GetTypeInfo().Assembly;
             return assembly.GetManifestResourceStream(resourceName);
         }
+=======
+>>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
     }
 }

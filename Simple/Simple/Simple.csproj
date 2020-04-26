@@ -29,9 +29,12 @@
     <EmbeddedResource Update="Cameraview.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Update="CollectionViewLoadMorePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+=======
+>>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
     <EmbeddedResource Update="ContentViews\GroupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

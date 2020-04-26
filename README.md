@@ -106,7 +106,10 @@ private void segment_SelectedItemChanged(object sender, SelectedItemChangedEvent
    }
 }
 ```
-
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-220033.jpg)
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215824.jpg)
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215923.jpg)
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215756.jpg)
 
 #### License
 Licensed under MIT, see license file

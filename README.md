@@ -40,9 +40,14 @@ xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Co
                     IconSource="md-send"/>
 ```           
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215756.jpg)
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200428-225423.jpg)
+
 
 if you will your button change color and text when is clicked
-you can set (HasSelected to True) and enabled your button set (UseEnable to true).
+
+you can set (HasSelected to True) and enabled your button set (UseEnable to true)
+
+also can set showpopup to true
 
 **CHECKBOX:**
 ```xml

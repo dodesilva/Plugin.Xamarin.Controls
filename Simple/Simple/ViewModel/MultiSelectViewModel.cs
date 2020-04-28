@@ -142,8 +142,6 @@ namespace Simple.ViewModel
         {
             if (obj != null)
             {
-                //var data = (MultiModel)((SelectableData)obj).Data;
-                //var data = (MultiModel)dataseled.Data;
                 if (!ListGroup.Any(u => u == (obj.Data as MultiModel).Name)&& obj.IsSelected)
                 {
                     ListGroup.Add((obj.Data as MultiModel).Name);

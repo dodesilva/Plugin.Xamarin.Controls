@@ -100,6 +100,50 @@
                 <controls:PXC_StackLayout BorderColor="#ccc"
                                       BorderRadius="10"
                                       BorderWidth="2"
+                                      Margin="5"
+                                      Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+                    <controls:PXC_Label Text="Switch Style"
+                                              TextColor="Black"
+                                              FontSize="Large"
+                                              HorizontalOptions="CenterAndExpand"
+                                                  FontName="FFF_Tusj"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="10"
+                             HorizontalOptions="CenterAndExpand">
+
+                        <controls:PXC_Switch IsToggled="True" VerticalOptions="Center" Margin="10,0"
+                                                         ToggledColor="LightSkyBlue" ThumbColor="White" UnToggledColor="LightGray"/>
+                        <controls:PXC_Switch IsToggled="False" VerticalOptions="Center"
+                                                         ToggledColor="Violet" ThumbColor="White" UnToggledColor="LightGray"/>
+                    </StackLayout>
+                </controls:PXC_StackLayout>
+                <controls:PXC_StackLayout BorderColor="#ccc"
+                                      BorderRadius="10"
+                                      BorderWidth="2"
+                                      Margin="5"
+                                      Orientation="Vertical"
+                                      HorizontalOptions="FillAndExpand">
+                    <controls:PXC_Label Text="Checkbox Style"
+                                              TextColor="Black"
+                                              FontSize="Large"
+                                              HorizontalOptions="CenterAndExpand"
+                                                  FontName="FFF_Tusj"/>
+                    <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+                        <controls:PXC_Checkbox BorderWidth="5" Margin="5" CheckedColor="Red" IconTypeFace="Material" 
+                                                      UnCheckedColor="Gray" IconSource="md-check-box" IsChecked="True"/>
+                        <controls:PXC_Checkbox BorderWidth="5" Margin="5" CheckedColor="Red" IconTypeFace="Material"
+                                                      UnCheckedColor="Gray" IconSource="md-check-box" IsChecked="False"/>
+                        <controls:PXC_Checkbox BorderWidth="5" Margin="5" CheckedColor="LightGreen" IconTypeFace="Material"
+                                                      UnCheckedColor="Gray" IconSource="md-check" IsChecked="True"/>
+                        <controls:PXC_Checkbox BorderWidth="5" Margin="5" CheckedColor="Blue" IconTypeFace="Material"
+                                                      UnCheckedColor="Gray" IconSource="md-close" IsChecked="True"/>
+                    </StackLayout>
+                </controls:PXC_StackLayout>
+                <controls:PXC_StackLayout BorderColor="#ccc"
+                                      BorderRadius="10"
+                                      BorderWidth="2"
                                       Margin="5"   
                                           Padding="10"
                                       Orientation="Vertical"
@@ -155,75 +199,12 @@
                                      IconTypeFace="IconMoon"
                                      FontSize="30"/>
                     </StackLayout>
-<<<<<<< HEAD
-                   
-=======
-                    <StackLayout Orientation="Horizontal"
-                             Padding="10"
-                                 HorizontalOptions="FillAndExpand">
-                        <controls:PXC_Button HeightRequest="40"
-                                     WidthRequest="40"
-                                     Padding="5"
-                                     HorizontalOptions="CenterAndExpand"
-                                     VerticalOptions="Center"
-                                     Icon="Logout"
-                                     BackgroundColor="Transparent"
-                                     TextColor="Red"
-                                     BorderColor="Red"
-                                     BorderWidth="2"
-                                     CornerRadius="100"
-                                     FontAttributes="Bold"
-                                     FontIconName="IconMoon"
-                                     FontSize="Large"/>
-                        <controls:PXC_Button HeightRequest="40"
-                                     WidthRequest="40"
-                                     Padding="5"
-                                     HorizontalOptions="CenterAndExpand"
-                                     VerticalOptions="Center"
-                                     Icon="Facebook"
-                                     BackgroundColor="Transparent"
-                                     TextColor="Blue"
-                                     BorderColor="Blue"
-                                     BorderWidth="2"
-                                     CornerRadius="100"
-                                     FontAttributes="Bold"
-                                     FontIconName="IconMoon"
-                                     FontSize="Large"/>
-                        <controls:PXC_Button HeightRequest="40"
-                                     WidthRequest="40"
-                                     Padding="5"
-                                     HorizontalOptions="CenterAndExpand"
-                                     VerticalOptions="Center"
-                                     Icon="Whatsapp"
-                                     BackgroundColor="Transparent"
-                                     TextColor="DarkSeaGreen"
-                                     BorderColor="DarkSeaGreen"
-                                     BorderWidth="2"
-                                     CornerRadius="100"
-                                     FontAttributes="Bold"
-                                     FontIconName="IconMoon"
-                                     FontSize="Large"/>
-                        <controls:PXC_Button HeightRequest="40"
-                                     WidthRequest="40"
-                                     Padding="5"
-                                     HorizontalOptions="CenterAndExpand"
-                                     VerticalOptions="Center"
-                                     Icon="Twitter"
-                                     BackgroundColor="Transparent"
-                                     TextColor="DeepSkyBlue"
-                                     BorderColor="DeepSkyBlue"
-                                     BorderWidth="2"
-                                     CornerRadius="100"
-                                     FontAttributes="Bold"
-                                     FontIconName="IconMoon"
-                                     FontSize="Large"/>
-                    </StackLayout>
->>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
+
                     <controls:PXC_Button HeightRequest="35"
                                      Margin="5"
                                      FontSize="18"
                                      StartColor="White"
-                                         EndColor="DodgerBlue"
+                                     EndColor="DodgerBlue"
                                      Clicked="Button_Clicked"
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand"

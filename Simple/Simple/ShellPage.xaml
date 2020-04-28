@@ -30,20 +30,16 @@
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
         <Tab Title="Contact" Icon="ic_document.png">
-<<<<<<< HEAD
-            <ShellContent ContentTemplate="{DataTemplate local:CollectionViewLoadMorePage}" />
-=======
-            <ShellContent ContentTemplate="{DataTemplate local:CameraPage}" />
->>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
+            <ShellContent Title="Checkbox" ContentTemplate="{DataTemplate local:CollectionViewLoadMorePage}" />
+            <ShellContent Title="Popup" ContentTemplate="{DataTemplate local:ButtonAndImagePage}" />
         </Tab>
         <Tab Title="Pessoas" Icon="ic_people_outline.png">
             <ShellContent ContentTemplate="{DataTemplate local:SegmentPage}" />
         </Tab>
-<<<<<<< HEAD
+
         <Tab Title="Pessoas" Icon="ic_people_outline.png">
             <ShellContent ContentTemplate="{DataTemplate local:FlaxPage}" />
         </Tab>
-=======
->>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
+
     </TabBar>
 </Shell>

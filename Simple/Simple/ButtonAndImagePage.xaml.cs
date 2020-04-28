@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Xamarin.Controls;
+using Simple.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,8 @@ namespace Simple
         public ButtonAndImagePage()
         {
             InitializeComponent();
+            BindingContext = new MultiSendViewModel();
         }
+
     }
 }

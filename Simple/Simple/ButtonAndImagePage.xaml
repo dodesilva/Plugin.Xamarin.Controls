@@ -4,12 +4,89 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:controls="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
              x:Class="Simple.ButtonAndImagePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="listParti"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+
+            <controls:PXC_SearchBar x:Name="searchbar"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="5"
+                                    Text="{Binding Filter,Mode=TwoWay}"
+                                    PxcSearchCommand="{Binding SearchCommand}"
+                                    BorderColor="#ccc"
+                                    BorderRadius="15"
+                                    BorderWidth="1"
+                                    HeightRequest="35"
+                                    FillBackGroungColor="#fff"
+                                    HasBorder="True"/>
+
+            <controls:PXC_LIstView ItemsSource="{Binding GetUserList}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="True"
+                      LoadMoreDownCommand="{Binding LoadMoreCommand}">
+                <controls:PXC_LIstView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Padding="7"
+                                         Margin="2">
+                                <Grid x:Name="listitem">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <controls:PXC_Image HeightRequest="35"
+                                                        WidthRequest="35"
+                                                        BorderRadius="100"
+                                                        BorderColor="#ccc"
+                                                        Grid.Column="0"
+                                                        BorderWidth="2" 
+                                                        VerticalOptions="CenterAndExpand"
+                                                        Source="{Binding Data.Image}"/>
+
+
+                                    <Label Text="{Binding Data.Name}"
+                                           Grid.Column="1"
+                                           HorizontalOptions="StartAndExpand"
+                                           LineBreakMode="TailTruncation"
+                                           Margin="5,0"
+                                           TextColor="Black"
+                                           FontSize="Medium"
+                                           VerticalOptions="Center"/>
+                                    <controls:PXC_Button Grid.Column="2" Margin="5" 
+                                                         ShowPopup="True"
+                                                         ItemsSource="{Binding Source={x:Reference listParti},Path=BindingContext.ListItems}"
+                                                         FontSize="20" HorizontalOptions="Center"
+                                                         CommandParameter="{Binding .}"
+                                                         IconSource="md-more-vert" 
+                                                         IconTypeFace="Material" 
+                                                         TextColor="#777"/>
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:PXC_LIstView.ItemTemplate>
+                <controls:PXC_LIstView.Footer>
+                    <controls:PXC_StackLayout IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" BorderColor="#777" BorderWidth="2" BorderRadius="10" FillBackGroungColor="#ccc">
+                        <Label Margin="10,5"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Text="Loading.."
+                                   FontSize="Small"
+                                   TextColor="#777"
+                                   FontAttributes="Bold" />
+                    </controls:PXC_StackLayout>
+                </controls:PXC_LIstView.Footer>
+            </controls:PXC_LIstView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

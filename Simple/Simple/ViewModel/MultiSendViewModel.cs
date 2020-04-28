@@ -18,6 +18,7 @@ namespace Simple.ViewModel
         public int PageSize = 10;
         public int pageinsert = 1;
         private int RefreshDuration = 1;
+        List<string> _listItems;
 
         private ObservableCollection<SelectableData<MultiModel>> _getUserList;
         public ObservableCollection<SelectableData<MultiModel>> GetUserList
@@ -26,6 +27,11 @@ namespace Simple.ViewModel
             set { SetValue(ref _getUserList, value); }
         }
 
+        public List<string> ListItems
+        {
+            get { return _listItems; }
+            set { SetValue(ref _listItems, value); }
+        }
         public List<SelectableData<MultiModel>> MultiModels;
 
         private string _filter;
@@ -47,18 +53,40 @@ namespace Simple.ViewModel
         }
 
         public List<MultiModel> Roomchecked { get; set; }
+        #region Singleton
+        private static MultiSendViewModel instance;
 
+        public static MultiSendViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                return new MultiSendViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
         public MultiSendViewModel()
         {
+            instance = this;
             Roomchecked = new List<MultiModel>();
             GetUserList = new ObservableCollection<SelectableData<MultiModel>>();
             MultiModels = new List<SelectableData<MultiModel>>();
             LoadValues();
         }
-
+        public List<string> GetListString()
+        {
+            ListItems = new List<string>();
+            ListItems.Add("Sair do grupo");
+            ListItems.Add("This second item");
+            return ListItems;
+        }
         private void LoadValues()
         {
             GetUserList.Clear();
+            ListItems = new List<string>();
+            ListItems.Add("Sair do grupo");
+            ListItems.Add("This second item");
             for (int i = 0; i < 100; i++)
             {
                 var data = new MultiModel
@@ -94,6 +122,18 @@ namespace Simple.ViewModel
             {
                 return new Command<SelectableData<MultiModel>>(share);
             }
+        }
+        public ICommand PopupCommand
+        {
+            get
+            {
+                return new Command(Popup);
+            }
+        }
+
+        private void Popup(object obj)
+        {
+           
         }
 
         public ICommand SearchCommand

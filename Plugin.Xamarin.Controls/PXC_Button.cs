@@ -1,8 +1,10 @@
 ﻿using Plugin.Xamarin.Controls.EnumFiles;
+using Plugin.Xamarin.Controls.EventArgsFile;
 using Plugin.Xamarin.Controls.Interfaces;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
+using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Windows.Input;
@@ -12,13 +14,13 @@ namespace Plugin.Xamarin.Controls
 {
     public class PXC_Button : SKCanvasView
     {
-<<<<<<< HEAD
+
         #region Bindable
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(PXC_PopupMenu), default(IEnumerable));
+        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create(nameof(ShowPopup), typeof(bool), typeof(PXC_PopupMenu), false);
         public static BindableProperty SelectedBackgroundColorProperty = BindableProperty.Create(nameof(SelectedBackgroundColor), typeof(Color),
             typeof(PXC_Button), Color.Transparent, BindingMode.OneWay,
             validateValue: (_, value) => value != null, propertyChanged: OnPropertyChangedInvalidate);
-=======
->>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
 
         public static readonly BindableProperty BorderWidthProperty = BindableProperty.Create(nameof(BorderWidth), typeof(float), typeof(PXC_Button), (float)0f, BindingMode.OneWay,
             validateValue: (_, value) => value != null && (float)value >= 0,
@@ -92,6 +94,16 @@ namespace Plugin.Xamarin.Controls
         }
         #endregion
         #region Property
+        public IEnumerable ItemsSource
+        {
+            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
+        }
+        public bool ShowPopup
+        {
+            get { return (bool)GetValue(ShowPopupProperty); }
+            set { SetValue(ShowPopupProperty, value); }
+        }
         public bool UseEnabled
         {
             get { return (bool)GetValue(UseEnabledProperty); }
@@ -194,10 +206,11 @@ namespace Plugin.Xamarin.Controls
             set => SetValue(TextProperty, value);
         }
         #endregion
-
+        PXC_PopupMenu pXC_Popup;
         public PXC_Button()
         {
             EnableTouchEvents = true;
+           
         }
 
         private SKColor skStartColor;
@@ -350,7 +363,7 @@ namespace Plugin.Xamarin.Controls
             }
         }
 
-<<<<<<< HEAD
+
         protected override void OnTouch(SKTouchEventArgs e)
         {
             switch (e.ActionType)
@@ -361,18 +374,32 @@ namespace Plugin.Xamarin.Controls
                     if (Command != null && Command.CanExecute(CommandParameter))
                     {
                         Command.Execute(CommandParameter);
-                    }
-
+                    }                   
                     RaiseClickedEvent();
                     break;
             }
-
             e.Handled = true;
         }
 
         protected void RaiseClickedEvent()
         {
             Clicked?.Invoke(this, new TappedEventArgs(CommandParameter));
+            if (ShowPopup)
+            {
+                pXC_Popup = new PXC_PopupMenu();
+                pXC_Popup.ItemsSource = ItemsSource;
+                pXC_Popup.BaseContext = CommandParameter;
+                pXC_Popup.ShowPopup(this as View);
+                pXC_Popup.OnItemSelected += PXC_Popup_OnItemSelected;
+            }
+        }
+
+        private void PXC_Popup_OnItemSelected(object sender, PopupDataChangedEventArgs e)
+        {
+            if (Command != null && Command.CanExecute(e.DataModel))
+            {
+                Command.Execute(e.DataModel);
+            }
         }
 
         public event EventHandler<TappedEventArgs> Clicked;
@@ -382,7 +409,6 @@ namespace Plugin.Xamarin.Controls
             var assembly = GetType().GetTypeInfo().Assembly;
             return assembly.GetManifestResourceStream(resourceName);
         }
-=======
->>>>>>> 712d3873961ff4c4091c5fe5a63e82a82f9ae8e8
+
     }
 }

@@ -4,10 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:bh="clr-namespace:Plugin.Xamarin.Controls.Behaviors;assembly=Plugin.Xamarin.Controls"
              xmlns:control="clr-namespace:Plugin.Xamarin.Controls;assembly=Plugin.Xamarin.Controls"
-             xmlns:vl="clr-namespace:Plugin.Xamarin.Controls.ViewCells;assembly=Plugin.Xamarin.Controls"
-             xmlns:ms="clr-namespace:Plugin.Xamarin.Controls.MultySelectable;assembly=Plugin.Xamarin.Controls"
              x:Class="Simple.CollectionViewLoadMorePage">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="listParti">

@@ -52,6 +52,7 @@
     <Compile Include="Controls\PXC_ImageRenderer.cs" />
     <Compile Include="Controls\PXC_LabelRenderer.cs" />
     <Compile Include="Controls\PXC_PickerRenderer.cs" />
+    <Compile Include="Controls\PXC_PopupEffect.cs" />
     <Compile Include="Controls\PXC_RadioButtonRenderer.cs" />
     <Compile Include="Controls\PXC_SearchBarRenderer.cs" />
     <Compile Include="Controls\PXC_StackLayoutRenderer.cs" />

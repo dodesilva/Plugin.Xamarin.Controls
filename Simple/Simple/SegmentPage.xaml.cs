@@ -19,12 +19,8 @@ namespace Simple
         {
             InitializeComponent();
             List<BarIconAndTitle> barTexts = new List<BarIconAndTitle>();
-            //barTexts.Add("Users" );
-            //barTexts.Add("Group");
             barTexts.Add(new BarIconAndTitle { IconText = "md-person", Title = "Users" });
             barTexts.Add(new BarIconAndTitle { IconText = "md-group", Title = "Group" });
-            barTexts.Add(new BarIconAndTitle { IconText = "md-person", Title = "Users" });
-            barTexts.Add(new BarIconAndTitle { IconText = "md-group", Title = "Users" });
             segment.Children = barTexts;
         }
 
@@ -35,7 +31,10 @@ namespace Simple
 
         private void segment_SelectedItemChanged(object sender, SelectedItemChangedEventArgs e)
         {
+            if(e.SelectedItem== "Users")
+            {
 
+            }
         }
     }
 }

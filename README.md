@@ -58,8 +58,6 @@ also can set (showpopup to true)
                      IconTypeFace="Material" 
                      TextColor="#777"/>
 ```
-![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200428-225423.jpg)
-
 Use a DataModel to retrive the item and the your data from commandparameter
 
 ```csharp
@@ -83,6 +81,9 @@ Use a DataModel to retrive the item and the your data from commandparameter
     }
 }
 ```
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200428-225423.jpg)
+
+
 
 **CHECKBOX:**
 ```xml
@@ -138,8 +139,6 @@ Set IsHorizontal to true if you using collectioview on Horizontal
             <Grid x:Name="gridcontrol"/>
 </StackLayout>
 ```
-![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-005936.jpg)
-
 ```csharp
 using Plugin.Xamarin.Controls.Helpers;
 
@@ -156,6 +155,11 @@ private void segment_SelectedItemChanged(object sender, SelectedItemChangedEvent
    }
 }
 ```
+![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-005936.jpg)
+
+
+
+### All Controls
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-220033.jpg)
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-004149.jpg)
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200427-004156.jpg)

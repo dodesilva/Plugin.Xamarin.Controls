@@ -52,6 +52,7 @@ also can set (showpopup to true)
                      ShowPopup="True"
                      ItemsSource="{Binding Source={x:Reference listParti},Path=BindingContext.ListItems}"
                      FontSize="20" HorizontalOptions="Center"
+                     Command="{Binding Source={x:Reference listParti},Path=BindingContext.PopupCommand}"
                      CommandParameter="{Binding .}"
                      IconSource="md-more-vert" 
                      IconTypeFace="Material" 

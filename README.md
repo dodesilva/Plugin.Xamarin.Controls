@@ -60,6 +60,30 @@ also can set (showpopup to true)
 ```
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200428-225423.jpg)
 
+Use a DataModel to retrive the item and the your data from commandparameter
+
+```csharp
+ ListItems = new List<string>();
+ ListItems.Add("Sair do grupo");
+ ListItems.Add("This second item");
+ 
+ public ICommand PopupCommand
+ {
+    get { return new RelayCommand<DataModel>(Popup); }
+ }
+ 
+ private void Popup(DataModel data)
+ {
+    switch (data.Item)
+    {
+       case "Sair do grupo":
+       break;
+       case "This second item":
+       break;
+    }
+}
+```
+
 **CHECKBOX:**
 ```xml
 <controls:PXC_Checkbox BorderWidth="5" 

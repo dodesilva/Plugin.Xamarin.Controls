@@ -92,7 +92,10 @@ Use a DataModel to retrive the item and the your data from commandparameter
                        IconTypeFace="Material"
                        UnCheckedColor="Gray" 
                        IconSource="md-check-box" 
+                       CheckedCommand="{Binding Source={x:Reference listParti},Path=BindingContext.ShareCommand}"
+                       CheckedCommandParameter="{Binding .}"
                        IsChecked="{Binding IsSelected}"/>
+
 ```    
 ![](https://github.com/dodesilva/Plugin.Xamarin.Controls/blob/master/Screenshot_20200425-215824.jpg)
 
